@@ -1,0 +1,3 @@
+#!/bin/bash
+(time prngs/prng.o Rand seeds/setAll.txt 26 | julia jl/Main.jl asin 5) > results/Rand_asin_len26_mid_points_1.txt 2>&1
+

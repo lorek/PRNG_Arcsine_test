@@ -1,0 +1,1223 @@
+GeneratorInvoker::run(10000, 67108864)
+Generator: 100/10000
+Generator: 200/10000
+Generator: 300/10000
+Generator: 400/10000
+Generator: 500/10000
+Generator: 600/10000
+Generator: 700/10000
+Generator: 800/10000
+Generator: 900/10000
+Generator: 1000/10000
+Generator: 1100/10000
+Generator: 1200/10000
+Generator: 1300/10000
+Generator: 1400/10000
+Generator: 1500/10000
+Generator: 1600/10000
+Generator: 1700/10000
+Generator: 1800/10000
+Generator: 1900/10000
+Generator: 2000/10000
+Generator: 2100/10000
+Generator: 2200/10000
+Generator: 2300/10000
+Generator: 2400/10000
+Generator: 2500/10000
+Generator: 2600/10000
+Generator: 2700/10000
+Generator: 2800/10000
+Generator: 2900/10000
+Generator: 3000/10000
+Generator: 3100/10000
+Generator: 3200/10000
+Generator: 3300/10000
+Generator: 3400/10000
+Generator: 3500/10000
+Generator: 3600/10000
+Generator: 3700/10000
+Generator: 3800/10000
+Generator: 3900/10000
+Generator: 4000/10000
+Generator: 4100/10000
+Generator: 4200/10000
+Generator: 4300/10000
+Generator: 4400/10000
+Generator: 4500/10000
+Generator: 4600/10000
+Generator: 4700/10000
+Generator: 4800/10000
+Generator: 4900/10000
+Generator: 5000/10000
+Generator: 5100/10000
+Generator: 5200/10000
+Generator: 5300/10000
+Generator: 5400/10000
+Generator: 5500/10000
+Generator: 5600/10000
+Generator: 5700/10000
+Generator: 5800/10000
+Generator: 5900/10000
+Generator: 6000/10000
+Generator: 6100/10000
+Generator: 6200/10000
+Generator: 6300/10000
+Generator: 6400/10000
+Generator: 6500/10000
+Generator: 6600/10000
+Generator: 6700/10000
+Generator: 6800/10000
+Generator: 6900/10000
+Generator: 7000/10000
+Generator: 7100/10000
+Generator: 7200/10000
+Generator: 7300/10000
+Generator: 7400/10000
+Generator: 7500/10000
+Generator: 7600/10000
+Generator: 7700/10000
+Generator: 7800/10000
+Generator: 7900/10000
+Generator: 8000/10000
+Generator: 8100/10000
+Generator: 8200/10000
+Generator: 8300/10000
+Generator: 8400/10000
+Generator: 8500/10000
+Generator: 8600/10000
+Generator: 8700/10000
+Generator: 8800/10000
+Generator: 8900/10000
+Generator: 9000/10000
+Generator: 9100/10000
+Generator: 9200/10000
+Generator: 9300/10000
+Generator: 9400/10000
+Generator: 9500/10000
+Generator: 9600/10000
+Generator: 9700/10000
+Generator: 9800/10000
+Generator: 9900/10000
+Generator: 10000/10000
+Entering main()
+Julia: nrOfStrings = 10000
+Julia: length = 67108864
+Julia: typeof(loglen) = Int64
+Julia: checkPoints = [262144, 524288, 1048576, 2097152, 4194304, 8388608, 16777216, 33554432, 67108864]
+labels = String["2^18", "2^19", "2^20", "2^21", "2^22", "2^23", "2^24", "2^25", "2^26"]
+Entering readAllBits()
+Julia: read 10
+Julia: read 20
+Julia: read 30
+Julia: read 40
+Julia: read 50
+Julia: read 60
+Julia: read 70
+Julia: read 80
+Julia: read 90
+Julia: read 100
+Julia: read 110
+Julia: read 120
+Julia: read 130
+Julia: read 140
+Julia: read 150
+Julia: read 160
+Julia: read 170
+Julia: read 180
+Julia: read 190
+Julia: read 200
+Julia: read 210
+Julia: read 220
+Julia: read 230
+Julia: read 240
+Julia: read 250
+Julia: read 260
+Julia: read 270
+Julia: read 280
+Julia: read 290
+Julia: read 300
+Julia: read 310
+Julia: read 320
+Julia: read 330
+Julia: read 340
+Julia: read 350
+Julia: read 360
+Julia: read 370
+Julia: read 380
+Julia: read 390
+Julia: read 400
+Julia: read 410
+Julia: read 420
+Julia: read 430
+Julia: read 440
+Julia: read 450
+Julia: read 460
+Julia: read 470
+Julia: read 480
+Julia: read 490
+Julia: read 500
+Julia: read 510
+Julia: read 520
+Julia: read 530
+Julia: read 540
+Julia: read 550
+Julia: read 560
+Julia: read 570
+Julia: read 580
+Julia: read 590
+Julia: read 600
+Julia: read 610
+Julia: read 620
+Julia: read 630
+Julia: read 640
+Julia: read 650
+Julia: read 660
+Julia: read 670
+Julia: read 680
+Julia: read 690
+Julia: read 700
+Julia: read 710
+Julia: read 720
+Julia: read 730
+Julia: read 740
+Julia: read 750
+Julia: read 760
+Julia: read 770
+Julia: read 780
+Julia: read 790
+Julia: read 800
+Julia: read 810
+Julia: read 820
+Julia: read 830
+Julia: read 840
+Julia: read 850
+Julia: read 860
+Julia: read 870
+Julia: read 880
+Julia: read 890
+Julia: read 900
+Julia: read 910
+Julia: read 920
+Julia: read 930
+Julia: read 940
+Julia: read 950
+Julia: read 960
+Julia: read 970
+Julia: read 980
+Julia: read 990
+Julia: read 1000
+Julia: read 1010
+Julia: read 1020
+Julia: read 1030
+Julia: read 1040
+Julia: read 1050
+Julia: read 1060
+Julia: read 1070
+Julia: read 1080
+Julia: read 1090
+Julia: read 1100
+Julia: read 1110
+Julia: read 1120
+Julia: read 1130
+Julia: read 1140
+Julia: read 1150
+Julia: read 1160
+Julia: read 1170
+Julia: read 1180
+Julia: read 1190
+Julia: read 1200
+Julia: read 1210
+Julia: read 1220
+Julia: read 1230
+Julia: read 1240
+Julia: read 1250
+Julia: read 1260
+Julia: read 1270
+Julia: read 1280
+Julia: read 1290
+Julia: read 1300
+Julia: read 1310
+Julia: read 1320
+Julia: read 1330
+Julia: read 1340
+Julia: read 1350
+Julia: read 1360
+Julia: read 1370
+Julia: read 1380
+Julia: read 1390
+Julia: read 1400
+Julia: read 1410
+Julia: read 1420
+Julia: read 1430
+Julia: read 1440
+Julia: read 1450
+Julia: read 1460
+Julia: read 1470
+Julia: read 1480
+Julia: read 1490
+Julia: read 1500
+Julia: read 1510
+Julia: read 1520
+Julia: read 1530
+Julia: read 1540
+Julia: read 1550
+Julia: read 1560
+Julia: read 1570
+Julia: read 1580
+Julia: read 1590
+Julia: read 1600
+Julia: read 1610
+Julia: read 1620
+Julia: read 1630
+Julia: read 1640
+Julia: read 1650
+Julia: read 1660
+Julia: read 1670
+Julia: read 1680
+Julia: read 1690
+Julia: read 1700
+Julia: read 1710
+Julia: read 1720
+Julia: read 1730
+Julia: read 1740
+Julia: read 1750
+Julia: read 1760
+Julia: read 1770
+Julia: read 1780
+Julia: read 1790
+Julia: read 1800
+Julia: read 1810
+Julia: read 1820
+Julia: read 1830
+Julia: read 1840
+Julia: read 1850
+Julia: read 1860
+Julia: read 1870
+Julia: read 1880
+Julia: read 1890
+Julia: read 1900
+Julia: read 1910
+Julia: read 1920
+Julia: read 1930
+Julia: read 1940
+Julia: read 1950
+Julia: read 1960
+Julia: read 1970
+Julia: read 1980
+Julia: read 1990
+Julia: read 2000
+Julia: read 2010
+Julia: read 2020
+Julia: read 2030
+Julia: read 2040
+Julia: read 2050
+Julia: read 2060
+Julia: read 2070
+Julia: read 2080
+Julia: read 2090
+Julia: read 2100
+Julia: read 2110
+Julia: read 2120
+Julia: read 2130
+Julia: read 2140
+Julia: read 2150
+Julia: read 2160
+Julia: read 2170
+Julia: read 2180
+Julia: read 2190
+Julia: read 2200
+Julia: read 2210
+Julia: read 2220
+Julia: read 2230
+Julia: read 2240
+Julia: read 2250
+Julia: read 2260
+Julia: read 2270
+Julia: read 2280
+Julia: read 2290
+Julia: read 2300
+Julia: read 2310
+Julia: read 2320
+Julia: read 2330
+Julia: read 2340
+Julia: read 2350
+Julia: read 2360
+Julia: read 2370
+Julia: read 2380
+Julia: read 2390
+Julia: read 2400
+Julia: read 2410
+Julia: read 2420
+Julia: read 2430
+Julia: read 2440
+Julia: read 2450
+Julia: read 2460
+Julia: read 2470
+Julia: read 2480
+Julia: read 2490
+Julia: read 2500
+Julia: read 2510
+Julia: read 2520
+Julia: read 2530
+Julia: read 2540
+Julia: read 2550
+Julia: read 2560
+Julia: read 2570
+Julia: read 2580
+Julia: read 2590
+Julia: read 2600
+Julia: read 2610
+Julia: read 2620
+Julia: read 2630
+Julia: read 2640
+Julia: read 2650
+Julia: read 2660
+Julia: read 2670
+Julia: read 2680
+Julia: read 2690
+Julia: read 2700
+Julia: read 2710
+Julia: read 2720
+Julia: read 2730
+Julia: read 2740
+Julia: read 2750
+Julia: read 2760
+Julia: read 2770
+Julia: read 2780
+Julia: read 2790
+Julia: read 2800
+Julia: read 2810
+Julia: read 2820
+Julia: read 2830
+Julia: read 2840
+Julia: read 2850
+Julia: read 2860
+Julia: read 2870
+Julia: read 2880
+Julia: read 2890
+Julia: read 2900
+Julia: read 2910
+Julia: read 2920
+Julia: read 2930
+Julia: read 2940
+Julia: read 2950
+Julia: read 2960
+Julia: read 2970
+Julia: read 2980
+Julia: read 2990
+Julia: read 3000
+Julia: read 3010
+Julia: read 3020
+Julia: read 3030
+Julia: read 3040
+Julia: read 3050
+Julia: read 3060
+Julia: read 3070
+Julia: read 3080
+Julia: read 3090
+Julia: read 3100
+Julia: read 3110
+Julia: read 3120
+Julia: read 3130
+Julia: read 3140
+Julia: read 3150
+Julia: read 3160
+Julia: read 3170
+Julia: read 3180
+Julia: read 3190
+Julia: read 3200
+Julia: read 3210
+Julia: read 3220
+Julia: read 3230
+Julia: read 3240
+Julia: read 3250
+Julia: read 3260
+Julia: read 3270
+Julia: read 3280
+Julia: read 3290
+Julia: read 3300
+Julia: read 3310
+Julia: read 3320
+Julia: read 3330
+Julia: read 3340
+Julia: read 3350
+Julia: read 3360
+Julia: read 3370
+Julia: read 3380
+Julia: read 3390
+Julia: read 3400
+Julia: read 3410
+Julia: read 3420
+Julia: read 3430
+Julia: read 3440
+Julia: read 3450
+Julia: read 3460
+Julia: read 3470
+Julia: read 3480
+Julia: read 3490
+Julia: read 3500
+Julia: read 3510
+Julia: read 3520
+Julia: read 3530
+Julia: read 3540
+Julia: read 3550
+Julia: read 3560
+Julia: read 3570
+Julia: read 3580
+Julia: read 3590
+Julia: read 3600
+Julia: read 3610
+Julia: read 3620
+Julia: read 3630
+Julia: read 3640
+Julia: read 3650
+Julia: read 3660
+Julia: read 3670
+Julia: read 3680
+Julia: read 3690
+Julia: read 3700
+Julia: read 3710
+Julia: read 3720
+Julia: read 3730
+Julia: read 3740
+Julia: read 3750
+Julia: read 3760
+Julia: read 3770
+Julia: read 3780
+Julia: read 3790
+Julia: read 3800
+Julia: read 3810
+Julia: read 3820
+Julia: read 3830
+Julia: read 3840
+Julia: read 3850
+Julia: read 3860
+Julia: read 3870
+Julia: read 3880
+Julia: read 3890
+Julia: read 3900
+Julia: read 3910
+Julia: read 3920
+Julia: read 3930
+Julia: read 3940
+Julia: read 3950
+Julia: read 3960
+Julia: read 3970
+Julia: read 3980
+Julia: read 3990
+Julia: read 4000
+Julia: read 4010
+Julia: read 4020
+Julia: read 4030
+Julia: read 4040
+Julia: read 4050
+Julia: read 4060
+Julia: read 4070
+Julia: read 4080
+Julia: read 4090
+Julia: read 4100
+Julia: read 4110
+Julia: read 4120
+Julia: read 4130
+Julia: read 4140
+Julia: read 4150
+Julia: read 4160
+Julia: read 4170
+Julia: read 4180
+Julia: read 4190
+Julia: read 4200
+Julia: read 4210
+Julia: read 4220
+Julia: read 4230
+Julia: read 4240
+Julia: read 4250
+Julia: read 4260
+Julia: read 4270
+Julia: read 4280
+Julia: read 4290
+Julia: read 4300
+Julia: read 4310
+Julia: read 4320
+Julia: read 4330
+Julia: read 4340
+Julia: read 4350
+Julia: read 4360
+Julia: read 4370
+Julia: read 4380
+Julia: read 4390
+Julia: read 4400
+Julia: read 4410
+Julia: read 4420
+Julia: read 4430
+Julia: read 4440
+Julia: read 4450
+Julia: read 4460
+Julia: read 4470
+Julia: read 4480
+Julia: read 4490
+Julia: read 4500
+Julia: read 4510
+Julia: read 4520
+Julia: read 4530
+Julia: read 4540
+Julia: read 4550
+Julia: read 4560
+Julia: read 4570
+Julia: read 4580
+Julia: read 4590
+Julia: read 4600
+Julia: read 4610
+Julia: read 4620
+Julia: read 4630
+Julia: read 4640
+Julia: read 4650
+Julia: read 4660
+Julia: read 4670
+Julia: read 4680
+Julia: read 4690
+Julia: read 4700
+Julia: read 4710
+Julia: read 4720
+Julia: read 4730
+Julia: read 4740
+Julia: read 4750
+Julia: read 4760
+Julia: read 4770
+Julia: read 4780
+Julia: read 4790
+Julia: read 4800
+Julia: read 4810
+Julia: read 4820
+Julia: read 4830
+Julia: read 4840
+Julia: read 4850
+Julia: read 4860
+Julia: read 4870
+Julia: read 4880
+Julia: read 4890
+Julia: read 4900
+Julia: read 4910
+Julia: read 4920
+Julia: read 4930
+Julia: read 4940
+Julia: read 4950
+Julia: read 4960
+Julia: read 4970
+Julia: read 4980
+Julia: read 4990
+Julia: read 5000
+Julia: read 5010
+Julia: read 5020
+Julia: read 5030
+Julia: read 5040
+Julia: read 5050
+Julia: read 5060
+Julia: read 5070
+Julia: read 5080
+Julia: read 5090
+Julia: read 5100
+Julia: read 5110
+Julia: read 5120
+Julia: read 5130
+Julia: read 5140
+Julia: read 5150
+Julia: read 5160
+Julia: read 5170
+Julia: read 5180
+Julia: read 5190
+Julia: read 5200
+Julia: read 5210
+Julia: read 5220
+Julia: read 5230
+Julia: read 5240
+Julia: read 5250
+Julia: read 5260
+Julia: read 5270
+Julia: read 5280
+Julia: read 5290
+Julia: read 5300
+Julia: read 5310
+Julia: read 5320
+Julia: read 5330
+Julia: read 5340
+Julia: read 5350
+Julia: read 5360
+Julia: read 5370
+Julia: read 5380
+Julia: read 5390
+Julia: read 5400
+Julia: read 5410
+Julia: read 5420
+Julia: read 5430
+Julia: read 5440
+Julia: read 5450
+Julia: read 5460
+Julia: read 5470
+Julia: read 5480
+Julia: read 5490
+Julia: read 5500
+Julia: read 5510
+Julia: read 5520
+Julia: read 5530
+Julia: read 5540
+Julia: read 5550
+Julia: read 5560
+Julia: read 5570
+Julia: read 5580
+Julia: read 5590
+Julia: read 5600
+Julia: read 5610
+Julia: read 5620
+Julia: read 5630
+Julia: read 5640
+Julia: read 5650
+Julia: read 5660
+Julia: read 5670
+Julia: read 5680
+Julia: read 5690
+Julia: read 5700
+Julia: read 5710
+Julia: read 5720
+Julia: read 5730
+Julia: read 5740
+Julia: read 5750
+Julia: read 5760
+Julia: read 5770
+Julia: read 5780
+Julia: read 5790
+Julia: read 5800
+Julia: read 5810
+Julia: read 5820
+Julia: read 5830
+Julia: read 5840
+Julia: read 5850
+Julia: read 5860
+Julia: read 5870
+Julia: read 5880
+Julia: read 5890
+Julia: read 5900
+Julia: read 5910
+Julia: read 5920
+Julia: read 5930
+Julia: read 5940
+Julia: read 5950
+Julia: read 5960
+Julia: read 5970
+Julia: read 5980
+Julia: read 5990
+Julia: read 6000
+Julia: read 6010
+Julia: read 6020
+Julia: read 6030
+Julia: read 6040
+Julia: read 6050
+Julia: read 6060
+Julia: read 6070
+Julia: read 6080
+Julia: read 6090
+Julia: read 6100
+Julia: read 6110
+Julia: read 6120
+Julia: read 6130
+Julia: read 6140
+Julia: read 6150
+Julia: read 6160
+Julia: read 6170
+Julia: read 6180
+Julia: read 6190
+Julia: read 6200
+Julia: read 6210
+Julia: read 6220
+Julia: read 6230
+Julia: read 6240
+Julia: read 6250
+Julia: read 6260
+Julia: read 6270
+Julia: read 6280
+Julia: read 6290
+Julia: read 6300
+Julia: read 6310
+Julia: read 6320
+Julia: read 6330
+Julia: read 6340
+Julia: read 6350
+Julia: read 6360
+Julia: read 6370
+Julia: read 6380
+Julia: read 6390
+Julia: read 6400
+Julia: read 6410
+Julia: read 6420
+Julia: read 6430
+Julia: read 6440
+Julia: read 6450
+Julia: read 6460
+Julia: read 6470
+Julia: read 6480
+Julia: read 6490
+Julia: read 6500
+Julia: read 6510
+Julia: read 6520
+Julia: read 6530
+Julia: read 6540
+Julia: read 6550
+Julia: read 6560
+Julia: read 6570
+Julia: read 6580
+Julia: read 6590
+Julia: read 6600
+Julia: read 6610
+Julia: read 6620
+Julia: read 6630
+Julia: read 6640
+Julia: read 6650
+Julia: read 6660
+Julia: read 6670
+Julia: read 6680
+Julia: read 6690
+Julia: read 6700
+Julia: read 6710
+Julia: read 6720
+Julia: read 6730
+Julia: read 6740
+Julia: read 6750
+Julia: read 6760
+Julia: read 6770
+Julia: read 6780
+Julia: read 6790
+Julia: read 6800
+Julia: read 6810
+Julia: read 6820
+Julia: read 6830
+Julia: read 6840
+Julia: read 6850
+Julia: read 6860
+Julia: read 6870
+Julia: read 6880
+Julia: read 6890
+Julia: read 6900
+Julia: read 6910
+Julia: read 6920
+Julia: read 6930
+Julia: read 6940
+Julia: read 6950
+Julia: read 6960
+Julia: read 6970
+Julia: read 6980
+Julia: read 6990
+Julia: read 7000
+Julia: read 7010
+Julia: read 7020
+Julia: read 7030
+Julia: read 7040
+Julia: read 7050
+Julia: read 7060
+Julia: read 7070
+Julia: read 7080
+Julia: read 7090
+Julia: read 7100
+Julia: read 7110
+Julia: read 7120
+Julia: read 7130
+Julia: read 7140
+Julia: read 7150
+Julia: read 7160
+Julia: read 7170
+Julia: read 7180
+Julia: read 7190
+Julia: read 7200
+Julia: read 7210
+Julia: read 7220
+Julia: read 7230
+Julia: read 7240
+Julia: read 7250
+Julia: read 7260
+Julia: read 7270
+Julia: read 7280
+Julia: read 7290
+Julia: read 7300
+Julia: read 7310
+Julia: read 7320
+Julia: read 7330
+Julia: read 7340
+Julia: read 7350
+Julia: read 7360
+Julia: read 7370
+Julia: read 7380
+Julia: read 7390
+Julia: read 7400
+Julia: read 7410
+Julia: read 7420
+Julia: read 7430
+Julia: read 7440
+Julia: read 7450
+Julia: read 7460
+Julia: read 7470
+Julia: read 7480
+Julia: read 7490
+Julia: read 7500
+Julia: read 7510
+Julia: read 7520
+Julia: read 7530
+Julia: read 7540
+Julia: read 7550
+Julia: read 7560
+Julia: read 7570
+Julia: read 7580
+Julia: read 7590
+Julia: read 7600
+Julia: read 7610
+Julia: read 7620
+Julia: read 7630
+Julia: read 7640
+Julia: read 7650
+Julia: read 7660
+Julia: read 7670
+Julia: read 7680
+Julia: read 7690
+Julia: read 7700
+Julia: read 7710
+Julia: read 7720
+Julia: read 7730
+Julia: read 7740
+Julia: read 7750
+Julia: read 7760
+Julia: read 7770
+Julia: read 7780
+Julia: read 7790
+Julia: read 7800
+Julia: read 7810
+Julia: read 7820
+Julia: read 7830
+Julia: read 7840
+Julia: read 7850
+Julia: read 7860
+Julia: read 7870
+Julia: read 7880
+Julia: read 7890
+Julia: read 7900
+Julia: read 7910
+Julia: read 7920
+Julia: read 7930
+Julia: read 7940
+Julia: read 7950
+Julia: read 7960
+Julia: read 7970
+Julia: read 7980
+Julia: read 7990
+Julia: read 8000
+Julia: read 8010
+Julia: read 8020
+Julia: read 8030
+Julia: read 8040
+Julia: read 8050
+Julia: read 8060
+Julia: read 8070
+Julia: read 8080
+Julia: read 8090
+Julia: read 8100
+Julia: read 8110
+Julia: read 8120
+Julia: read 8130
+Julia: read 8140
+Julia: read 8150
+Julia: read 8160
+Julia: read 8170
+Julia: read 8180
+Julia: read 8190
+Julia: read 8200
+Julia: read 8210
+Julia: read 8220
+Julia: read 8230
+Julia: read 8240
+Julia: read 8250
+Julia: read 8260
+Julia: read 8270
+Julia: read 8280
+Julia: read 8290
+Julia: read 8300
+Julia: read 8310
+Julia: read 8320
+Julia: read 8330
+Julia: read 8340
+Julia: read 8350
+Julia: read 8360
+Julia: read 8370
+Julia: read 8380
+Julia: read 8390
+Julia: read 8400
+Julia: read 8410
+Julia: read 8420
+Julia: read 8430
+Julia: read 8440
+Julia: read 8450
+Julia: read 8460
+Julia: read 8470
+Julia: read 8480
+Julia: read 8490
+Julia: read 8500
+Julia: read 8510
+Julia: read 8520
+Julia: read 8530
+Julia: read 8540
+Julia: read 8550
+Julia: read 8560
+Julia: read 8570
+Julia: read 8580
+Julia: read 8590
+Julia: read 8600
+Julia: read 8610
+Julia: read 8620
+Julia: read 8630
+Julia: read 8640
+Julia: read 8650
+Julia: read 8660
+Julia: read 8670
+Julia: read 8680
+Julia: read 8690
+Julia: read 8700
+Julia: read 8710
+Julia: read 8720
+Julia: read 8730
+Julia: read 8740
+Julia: read 8750
+Julia: read 8760
+Julia: read 8770
+Julia: read 8780
+Julia: read 8790
+Julia: read 8800
+Julia: read 8810
+Julia: read 8820
+Julia: read 8830
+Julia: read 8840
+Julia: read 8850
+Julia: read 8860
+Julia: read 8870
+Julia: read 8880
+Julia: read 8890
+Julia: read 8900
+Julia: read 8910
+Julia: read 8920
+Julia: read 8930
+Julia: read 8940
+Julia: read 8950
+Julia: read 8960
+Julia: read 8970
+Julia: read 8980
+Julia: read 8990
+Julia: read 9000
+Julia: read 9010
+Julia: read 9020
+Julia: read 9030
+Julia: read 9040
+Julia: read 9050
+Julia: read 9060
+Julia: read 9070
+Julia: read 9080
+Julia: read 9090
+Julia: read 9100
+Julia: read 9110
+Julia: read 9120
+Julia: read 9130
+Julia: read 9140
+Julia: read 9150
+Julia: read 9160
+Julia: read 9170
+Julia: read 9180
+Julia: read 9190
+Julia: read 9200
+Julia: read 9210
+Julia: read 9220
+Julia: read 9230
+Julia: read 9240
+Julia: read 9250
+Julia: read 9260
+Julia: read 9270
+Julia: read 9280
+Julia: read 9290
+Julia: read 9300
+Julia: read 9310
+Julia: read 9320
+Julia: read 9330
+Julia: read 9340
+Julia: read 9350
+Julia: read 9360
+Julia: read 9370
+Julia: read 9380
+Julia: read 9390
+Julia: read 9400
+Julia: read 9410
+Julia: read 9420
+Julia: read 9430
+Julia: read 9440
+Julia: read 9450
+Julia: read 9460
+Julia: read 9470
+Julia: read 9480
+Julia: read 9490
+Julia: read 9500
+Julia: read 9510
+Julia: read 9520
+Julia: read 9530
+Julia: read 9540
+Julia: read 9550
+Julia: read 9560
+Julia: read 9570
+Julia: read 9580
+Julia: read 9590
+Julia: read 9600
+Julia: read 9610
+Julia: read 9620
+Julia: read 9630
+Julia: read 9640
+Julia: read 9650
+Julia: read 9660
+Julia: read 9670
+Julia: read 9680
+Julia: read 9690
+Julia: read 9700
+Julia: read 9710
+Julia: read 9720
+Julia: read 9730
+Julia: read 9740
+Julia: read 9750
+Julia: read 9760
+Julia: read 9770
+Julia: read 9780
+Julia: read 9790
+Julia: read 9800
+Julia: read 9810
+Julia: read 9820
+Julia: read 9830
+Julia: read 9840
+Julia: read 9850
+Julia: read 9860
+Julia: read 9870
+Julia: read 9880
+Julia: read 9890
+Julia: read 9900
+Julia: read 9910
+Julia: read 9920
+Julia: read 9930
+Julia: read 9940
+Julia: read 9950
+Julia: read 9960
+Julia: read 9970
+Julia: read 9980
+Julia: read 9990
+Julia: read 10000
+All bits read...
+Making measures...
+Making measure 1...
+Making measure 2...
+Making measure 3...
+Making measure 4...
+Making measure 5...
+Making measure 6...
+Making measure 7...
+Making measure 8...
+Making measure 9...
+[-Inf, -0.012) -> 0.0
+[-0.012, 0.012) -> 0.07133
+[0.012, 0.038) -> 0.05274
+[0.038, 0.062) -> 0.0368
+[0.062, 0.088) -> 0.03031
+[0.088, 0.112) -> 0.02657
+[0.112, 0.138) -> 0.02409
+[0.138, 0.162) -> 0.0223
+[0.162, 0.188) -> 0.02096
+[0.188, 0.212) -> 0.0199
+[0.212, 0.238) -> 0.01906
+[0.238, 0.262) -> 0.01838
+[0.262, 0.288) -> 0.01783
+[0.288, 0.312) -> 0.01737
+[0.312, 0.338) -> 0.01699
+[0.338, 0.362) -> 0.01669
+[0.362, 0.388) -> 0.01644
+[0.388, 0.412) -> 0.01625
+[0.412, 0.438) -> 0.0161
+[0.438, 0.462) -> 0.016
+[0.462, 0.488) -> 0.01594
+[0.488, 0.512) -> 0.01592
+[0.512, 0.538) -> 0.01594
+[0.538, 0.562) -> 0.016
+[0.562, 0.588) -> 0.0161
+[0.588, 0.612) -> 0.01625
+[0.612, 0.638) -> 0.01644
+[0.638, 0.662) -> 0.01669
+[0.662, 0.688) -> 0.01699
+[0.688, 0.712) -> 0.01737
+[0.712, 0.738) -> 0.01783
+[0.738, 0.762) -> 0.01838
+[0.762, 0.788) -> 0.01906
+[0.788, 0.812) -> 0.0199
+[0.812, 0.838) -> 0.02096
+[0.838, 0.862) -> 0.0223
+[0.862, 0.888) -> 0.02409
+[0.888, 0.912) -> 0.02657
+[0.912, 0.938) -> 0.03031
+[0.938, 0.962) -> 0.0368
+[0.962, 0.988) -> 0.05274
+[0.988, Inf) -> 0.07133
+[-Inf, -0.012) -> 0.0
+[-0.012, 0.012) -> 0.0719
+[0.012, 0.038) -> 0.0526
+[0.038, 0.062) -> 0.0406
+[0.062, 0.088) -> 0.0333
+[0.088, 0.112) -> 0.0267
+[0.112, 0.138) -> 0.022
+[0.138, 0.162) -> 0.0203
+[0.162, 0.188) -> 0.0212
+[0.188, 0.212) -> 0.0177
+[0.212, 0.238) -> 0.0215
+[0.238, 0.262) -> 0.0161
+[0.262, 0.288) -> 0.0167
+[0.288, 0.312) -> 0.0181
+[0.312, 0.338) -> 0.0185
+[0.338, 0.362) -> 0.0175
+[0.362, 0.388) -> 0.0167
+[0.388, 0.412) -> 0.0153
+[0.412, 0.438) -> 0.0154
+[0.438, 0.462) -> 0.0164
+[0.462, 0.488) -> 0.0151
+[0.488, 0.512) -> 0.0248
+[0.512, 0.538) -> 0.0165
+[0.538, 0.562) -> 0.0147
+[0.562, 0.588) -> 0.0157
+[0.588, 0.612) -> 0.0145
+[0.612, 0.638) -> 0.0148
+[0.638, 0.662) -> 0.0157
+[0.662, 0.688) -> 0.0189
+[0.688, 0.712) -> 0.0146
+[0.712, 0.738) -> 0.0184
+[0.738, 0.762) -> 0.0187
+[0.762, 0.788) -> 0.0163
+[0.788, 0.812) -> 0.0203
+[0.812, 0.838) -> 0.0199
+[0.838, 0.862) -> 0.0226
+[0.862, 0.888) -> 0.0227
+[0.888, 0.912) -> 0.0265
+[0.912, 0.938) -> 0.0313
+[0.938, 0.962) -> 0.0391
+[0.962, 0.988) -> 0.0496
+[0.988, Inf) -> 0.0708
+chisqTest 31.875596581899977
+chisqTest 27.11880087218952
+chisqTest 55.077348488262196
+chisqTest 31.81110868639232
+chisqTest 39.937930740328596
+chisqTest 33.305783698419575
+chisqTest 42.76622943213514
+chisqTest 55.77868581628861
+chisqTest 94.08727007277156
+String["2^18", "2^19", "2^20", "2^21", "2^22", "2^23", "2^24", "2^25", "2^26"]
+Any["", String["2^18", "2^19", "2^20", "2^21", "2^22", "2^23", "2^24", "2^25", "2^26"]]
+       ; String["2^18", "2^19", "2^20", "2^21", "2^22", "2^23", "2^24", "2^25", "2^26"]
+     tv; String["0.0235", "0.0222", "0.0301", "0.0213", "0.0232", "0.023", "0.0258", "0.0296", "0.0301"]
+   sep1; String["0.1013", "0.1011", "0.1529", "0.1754", "0.1305", "0.1029", "0.1186", "0.1567", "0.1594"]
+   sep2; String["0.1494", "0.1022", "0.1635", "0.1256", "0.1404", "0.1348", "0.1709", "0.1536", "0.3582"]
+  p-val; String["0.8166", "0.9401", "0.0567", "0.8188", "0.473", "0.764", "0.3532", "0.0498", "0.0"]
+
+real	83m59.913s
+user	85m5.410s
+sys	2m42.091s

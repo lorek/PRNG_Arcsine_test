@@ -1,0 +1,3 @@
+#!/bin/bash
+(time prngs_final/prng_dyck FlawedDyckMT seeds/setAll.txt 26 | julia jl/Main.jl asin 8) > results/FlawedDyckMT_asin_len26_OK2_mid_points_1.txt 2>&1
+

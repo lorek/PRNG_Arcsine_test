@@ -1,0 +1,3 @@
+#!/bin/bash
+(time prngs/prng.o NewMinstd3 seeds/setAll.txt 34 | julia jl/Main.jl asin 8) > results/NewMinstd3_asin_len34_mid_points_1.txt 2>&1
+
