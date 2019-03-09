@@ -1,5 +1,5 @@
 # PRNG_Arcsine_test
-Empirical tests for PRNGs based on the Arcsine Law
+Empirical tests for PRNGs based on the arcsine law
 
 Tools for empirical test for PRNGs based on the Arcsine Law, the method is described in a paper: Paweł Lorek, Grzegorz Łoś, Filip Zagórski and Karol Gotfryd "On testing pseudorandom generators via statistical tests based on the arcsine law".
 (to do: put link here)
