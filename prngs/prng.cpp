@@ -6,6 +6,7 @@
 #include <random>
 #include <iterator>
 #include <numeric>
+#include <iostream>
 #include "FlawedPath.hpp"
 
 typedef long long int64;
@@ -696,11 +697,11 @@ private:
 
 void wrongArgs(int argc, char** argv)
 {
-        printf("Usage: %s [prng name] [number of strings | path to seeds] [log2 of length >= 6] [nrOfSeeds to skip] [-nolen] \n", argv[0]);
+        printf("Usage: %s [prng name] [number of strings | path to seeds] [log2 of length >= 6] [nrOfSeeds to skip] [-nolen] [-f step size for FlawedDyckMT] \n", argv[0]);
         exit(1);
 }
 
-shared_ptr<PRNG> getPRNG(char* name, uint32 log_len = 26)
+shared_ptr<PRNG> getPRNG(char* name, uint32 log_len = 26, int64 step_flawed = 100)
 {	
     // TODO refactor
 	// - remove if-cascade
@@ -823,7 +824,7 @@ shared_ptr<PRNG> getPRNG(char* name, uint32 log_len = 26)
 	}
 	else if(strcmp(name, "FlawedDyckMT") == 0)
 	{
-		return shared_ptr<PRNG>(new FlawedDyckMT(log_len, 100));
+		return shared_ptr<PRNG>(new FlawedDyckMT(log_len, step_flawed));
 	}
     return shared_ptr<PRNG>();
 }
@@ -850,14 +851,9 @@ int main(int argc, char** argv)
         wrongArgs(argc, argv); // calls exit()
 	}
     
-	shared_ptr<PRNG> prng = getPRNG(argv[1], logLength);
-    if (!prng)
-    {
-        printf("Unknown prng: %s\n", argv[1]);
-        exit(1);
-    }
-    int64 length = myPow(2LL, logLength);
+	int64 length = myPow(2LL, logLength);
     int64 skip = 0;
+	int64 step_flawed = 100;
 	bool write_data_len = true;
     if (argc == 5) {
 		if(strcmp(argv[4], "-nolen") == 0) {
@@ -868,11 +864,43 @@ int main(int argc, char** argv)
 		}
     }
 	else if (argc == 6) {
+		if(strcmp(argv[4], "-f") == 0) {
+			step_flawed = atoi(argv[5]);
+		}
+		else {
+			skip = atoi(argv[4]);
+			if(strcmp(argv[5], "-nolen") == 0) {
+				write_data_len = false;
+			}
+		}
+		
+	}
+	else if (argc == 7) {
+		if(strcmp(argv[4], "-nolen") == 0) {
+			write_data_len = false;
+		}
+		else {
+			skip = atoi(argv[4]);
+		}
+		if(strcmp(argv[5], "-f") == 0) {
+			step_flawed = atoi(argv[6]);
+		}
+	}
+	else if (argc > 7) {
 		skip = atoi(argv[4]);
 		if(strcmp(argv[5], "-nolen") == 0) {
 			write_data_len = false;
 		}
+		if(strcmp(argv[6], "-f") == 0) {
+				step_flawed = atoi(argv[7]);
+		}
 	}
+	shared_ptr<PRNG> prng = getPRNG(argv[1], logLength, step_flawed);
+    if (!prng)
+    {
+        printf("Unknown prng: %s\n", argv[1]);
+        exit(1);
+    }
     GeneratorInvoker gi(prng, skip);
     if (nrOfStrings <= 0)
     {
@@ -883,6 +911,12 @@ int main(int argc, char** argv)
     {
         gi.run(nrOfStrings, length, write_data_len);
     }
+	// cout << "logLength = " << logLength << endl;
+	// cout << "nrOfStrings = " << nrOfStrings << endl;
+	// cout << "length = " << length << endl;
+	// cout << "skip = " << skip << endl;
+	// cout << "step_flawed = " << step_flawed << endl;
+	// cout << "write_data_len = " << (write_data_len ? "true" : "false") << endl;
 	// cout << "Test FlawedDyck" << endl;
 	// shared_ptr<PRNG> fd = shared_ptr<PRNG>(new FlawedDyck(9)); 
 	// for(int i = 0; i < 8; ++i) {
