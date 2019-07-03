@@ -13,14 +13,17 @@ Our implementation of PRNGs are in folder `prngs`. Main file: `prngs\prng.cpp`. 
 [user@machine PRNG_Arcsine_test/prngs]$ g++ -O2 -std=c++17 -o prng.o prng.cpp ./FlawedPath.cpp
 ````
 
-```Usage: ./prng.o [prng name] [number of strings | path to seeds] [log2 of length >= 6] [nrOfSeeds to skip] [-nolen] ```
+```Usage: ./prng.o [prng name] [number of strings | path to seeds] [log2 of length >= 6] [nrOfSeeds to skip] [-nolen] [-f frequency of flawed sequences] ```
 where
 * `prng_name` is one of `Rand, Rand0, Rand1, Rand3, Minstd, Minstd0, Minstd1, NewMinstd, NewMinstd1, NewMinstd3, CMRG, CMRG0, CMRG1, SBorland, C_PRG, SVIS, Mersenne, RANDU, zepsuty, FlawedDyck, FlawedDyckMT`
-In the article we used only `Rand` (BSD lib rand()), `SVIS` (Microsoft Visual C++ rand()), `C_PRG` (GLIBC stdlib rand()), `NewMinstd3` (Minstd with multiplier 48271), `Mersenne` (Mersenne Twister mt19937_64) `FlawedDyckMT` (every hundredth sequence is flawed (based on Dych Paths) so that it is exactly half of the time above x-axis, and half of the time above; otherwise it is an ouput of `Mersenne`)
-* ` [number of strings | path to seeds]`:  `number of strings` number of sequences to produce; or `path to seed`, a path to file with seeds (it will produce as many sequences as seeds in this file)
+In the article we used only `Rand` (BSD lib rand()), `SVIS` (Microsoft Visual C++ rand()), `C_PRG` (GLIBC stdlib rand()), `NewMinstd3` (Minstd with multiplier 48271), `Mersenne` (Mersenne Twister mt19937_64) `FlawedDyckMT` (every Fth sequence (starting with 
+Fth sequenc; where F is a user-defined parameter) is flawed, i.e. based on Dych Paths, so that it is exactly half of the time above x-axis, and half of the time above; otherwise it is an ouput of `Mersenne`)
+* `[number of strings | path to seeds]`:  `number of strings` number of sequences to produce; or `path to seed`, a path to file with seeds (it will produce as many sequences as seeds in this file)
 * `[log2 of length >= 6]` log2 of the length of each sequence
+* `[nrOfSeeds to skip]` number of seeds to skip while reading the seeds from a file with specified path (the PRNG will be invoked only for the remaining seeds)
 * `[-nolen]` by default, fist bits of output is the length of each sequence (needed for implemenations of our Arcsine tester). Can be useful if we want to produce only bits for another tester, e.g., for TestU01 of NIST Test Sutie.
-
+* `[-f frequency of flawed sequences]` this option is only valid for the PRNG `FlawedDyckMT`. `frequency of flawed sequences` is an integer F such that every Fth outputted sequence is flawed (based on Dych Paths); all remaining sequences are generated using  `Mersenne`. By default F=100.
+The first three parameters are mandatory.
 
 ## Testing PRNGs
 Program consists of several modules. From user's perspective, the starting point is `jl/Main.jl`. Program reads a bit stream from stdin. The results are written in stdout.  
