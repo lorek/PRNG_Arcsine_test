@@ -1,4 +1,13 @@
 push!(LOAD_PATH, joinpath(dirname(Base.source_path()), "modules"))
+# 
+# include("/home/peyo/repos/PRNG_Arcsine_test/jl/modules/MeasureCreatorModule.jl")
+# include("/home/peyo/repos/PRNG_Arcsine_test/jl/modules/MeasureModule.jl")
+# include("/home/peyo/repos/PRNG_Arcsine_test/jl/modules/ResultPresenterModule.jl")
+# include("/home/peyo/repos/PRNG_Arcsine_test/jl/modules/ResultReader.jl")
+# include("/home/peyo/repos/PRNG_Arcsine_test/jl/modules/ResultSetModule.jl")
+# include("/home/peyo/repos/PRNG_Arcsine_test/jl/modules/TestInvokerModule.jl")
+# include("/home/peyo/repos/PRNG_Arcsine_test/jl/modules/BitSeqModule.jl")
+
 
 using BitSeqModule
 using MeasureModule
@@ -6,18 +15,44 @@ using TestInvokerModule
 using ResultSetModule
 using ResultPresenterModule
 
+
+# sample usage 
+# [PRNG_Arcsine_test]$ cat tmp_nolen.tmp | /home/peyo/progs/julia/bin/julia jl/Main.jl asin 4 tmp.txt w 1000 6
+
 function main()
     println("Entering main()")
     
-    testType, nrOfCheckPoints, pathToFile, writeMode = getCommandLineArgs()
+    testType, nrOfCheckPoints, pathToFile, writeMode, nrOfStrings, len   = getCommandLineArgs()
     
-    nrOfStrings, length = getDataSize()
+#     println("nrOfStrings")
+#     println(nrOfStrings)
+#     println("len")
+#     println(len)
+#     
+#     println("pathToFile")
+#     println(pathToFile)
+#     println("done")
+    
+    #nrOfStrings, length = getDataSize()
+    nrOfStrings =  parse(Int64, nrOfStrings)
+    len2 = parse(Int64, len)
+    length=2^len2
+    
+    if(nrOfStrings==0)
+        nrOfStrings, length = getDataSize()
+    end
+    
+    
     println("Julia: nrOfStrings = $nrOfStrings\nJulia: length = $length");
+    
+    
     loglen = convert(Int64, floor(log2(length)))
     println("Julia: typeof(loglen) = $(typeof(loglen))");
     
     checkPoints, checkPointsLabels = makeCheckPoints(nrOfCheckPoints, loglen)
     println("Julia: checkPoints = $checkPoints\nlabels = $checkPointsLabels");
+    
+ 
     
     invoker = TestInvoker(getTestFunction(testType), checkPoints, checkPointsLabels)
     file = open(pathToFile, writeMode)
@@ -34,12 +69,15 @@ function main()
 end
 
 function getCommandLineArgs()
-    if (length(ARGS) < 1 || length(ARGS) > 4)
-        error("Usage: julia Main.jl [lil|asin] [nrOfCheckPoints] [pathToFile] [writeMode]")
+  println("length(ARGS)  =")
+    println(length(ARGS))
+    
+    if (length(ARGS) < 1 || length(ARGS) > 6)
+        error("Usage: julia Main.jl [lil|asin] [nrOfCheckPoints] [pathToFile] [writeMode] [nrOfStrings] [length]")
     end
     
     if (length(ARGS) == 1)
-        return ARGS[1], 0, "tmp.txt", "w"
+        return ARGS[1], 0, "tmp.txt", "w", "0", "0"
     end
     
     nrOfCheckPoints = parse(ARGS[2])
@@ -48,14 +86,17 @@ function getCommandLineArgs()
     end
     
     if (length(ARGS) == 2)
-        return ARGS[1], nrOfCheckPoints, "tmp.txt", "w"
+        println("Asdfsadf")
+        return ARGS[1], nrOfCheckPoints, "tmp.txt", "w",   "0", "0"
     end
     
     if (length(ARGS) == 3)
-        return ARGS[1], nrOfCheckPoints, ARGS[3], "w"
+        return ARGS[1], nrOfCheckPoints, ARGS[3], "w",   "0", "0"
     end
     
-    return ARGS[1], nrOfCheckPoints, ARGS[3], ARGS[4]
+  
+ 
+    return ARGS[1], nrOfCheckPoints, ARGS[3], ARGS[4], ARGS[5], ARGS[6]
 end
 
 
