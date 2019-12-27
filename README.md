@@ -28,9 +28,12 @@ The first three parameters are mandatory.
 ## Testing PRNGs
 Program consists of several modules. From user's perspective, the starting point is `jl/Main.jl`. Program reads a bit stream from stdin. The results are written in stdout.  
 Usage 
-```Usage: julia Main.jl [lil|asin] [nrOfCheckPoints] [pathToFile] [writeMode]```
+```Usage: julia Main.jl [lil|asin] [nrOfCheckPoints] [nrOfStrings] [length] [pathToFile] [writeMode] ```
 * `[lil|asin]` a test to apply, LIL (Law Iterated Logarithm) or ASIN (Arscine Law Test)
 * `[nrOfCheckPoints]` calculate statistics not only for whole length, but also for intemediate points.
+* `[nrOfStrings]` = number of sequences (only applied for files not resulted from `prngs/prng.cpp`)
+* `[length]` = log of a single sequence length  (only applied for files not resulted from `prngs/prng.cpp`)
+
 
 Assuming that we have compiled `prngs/prng.cpp` as `prngs/prng.o`, the typical usage is following:
 
@@ -46,6 +49,15 @@ Result:
    sep2;   String["1.0", "1.0", "1.0", "1.0", "1.0"]
   p-val;   String["0.0", "0.0", "0.0", "0.0", "0.0"]
 ````
+
+If we are to apply asin to some file not resulted from prngs/prng.o, we have to manually put number of sequences, and length of each sequence, e.g.,
+
+````
+[user@machine PRNG_Arcsine_test]$  cat our_random_bits.dat | julia jl/Main.jl asin 4 10000 6 
+````
+will run asin test against file `our_random_bits.dat` which is assumed to have 10000  sequences, each of length 2^6=64 
+(thus containing 640000 bits).
+
 
  
 ## Prepared bash scripts
