@@ -22,16 +22,16 @@ using ResultPresenterModule
 function main()
     println("Entering main()")
     
-    testType, nrOfCheckPoints, pathToFile, writeMode, nrOfStrings, len   = getCommandLineArgs()
+    testType, nrOfCheckPoints, nrOfStrings, len, pathToFile, writeMode    = getCommandLineArgs()
     
-#     println("nrOfStrings")
-#     println(nrOfStrings)
-#     println("len")
-#     println(len)
-#     
-#     println("pathToFile")
-#     println(pathToFile)
-#     println("done")
+    println("nrOfStrings")
+    println(nrOfStrings)
+    println("len")
+    println(len)
+    
+    println("pathToFile")
+    println(pathToFile)
+    println("done")
     
     #nrOfStrings, length = getDataSize()
     nrOfStrings =  parse(Int64, nrOfStrings)
@@ -73,11 +73,11 @@ function getCommandLineArgs()
     println(length(ARGS))
     
     if (length(ARGS) < 1 || length(ARGS) > 6)
-        error("Usage: julia Main.jl [lil|asin] [nrOfCheckPoints] [pathToFile] [writeMode] [nrOfStrings] [length]")
+        error("Usage: julia Main.jl [lil|asin] [nrOfCheckPoints] [nrOfStrings] [length] [pathToFile] [writeMode] ")
     end
     
     if (length(ARGS) == 1)
-        return ARGS[1], 0, "tmp.txt", "w", "0", "0"
+        return ARGS[1], 0, "0", "0", "tmp.txt", "w"
     end
     
     nrOfCheckPoints = parse(ARGS[2])
@@ -87,11 +87,11 @@ function getCommandLineArgs()
     
     if (length(ARGS) == 2)
         println("Asdfsadf")
-        return ARGS[1], nrOfCheckPoints, "tmp.txt", "w",   "0", "0"
+        return ARGS[1], nrOfCheckPoints,     "0", "0", "tmp.txt", "w"
     end
     
-    if (length(ARGS) == 3)
-        return ARGS[1], nrOfCheckPoints, ARGS[3], "w",   "0", "0"
+    if (length(ARGS) == 4)
+        return ARGS[1], nrOfCheckPoints, ARGS[3],ARGS[4],    "tmp.txt", "w"
     end
     
   
