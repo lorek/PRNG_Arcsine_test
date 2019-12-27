@@ -50,12 +50,12 @@ Result:
   p-val;   String["0.0", "0.0", "0.0", "0.0", "0.0"]
 ````
 
-If we are to apply asin to some file not resulted from prngs/prng.o, we have to manually put number of sequences, and length of each sequence, e.g.,
+If we are to apply `asin` to some file not resulted from `prngs/prng.o`, we have to manually put number of sequences, and (log of) length of each sequence, e.g.,
 
 ````
 [user@machine PRNG_Arcsine_test]$  cat our_random_bits.dat | julia jl/Main.jl asin 4 10000 6 
 ````
-will run asin test against file `our_random_bits.dat` which is assumed to have 10000  sequences, each of length 2^6=64 
+will run `asin` test against file `our_random_bits.dat` which is assumed to have 10000  sequences, each of length 2^6=64 
 (thus containing 640000 bits).
 
 
