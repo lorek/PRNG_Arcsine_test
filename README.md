@@ -5,7 +5,7 @@ Tools for empirical test for PRNGs based on the Arcsine Law, the method is descr
 (to do: put link here)
 
 ## Requirements
-Tool was written and tested in `The Julia Language v0.6.2` (also worked in `v0.6.2`).
+Tool was written and tested in `The Julia Language v0.6.2` (also worked in `v0.6.4`).
 
 ## PRNGs
 Our implementation of PRNGs are in folder `prngs`. Main file: `prngs\prng.cpp`. Compiling:
