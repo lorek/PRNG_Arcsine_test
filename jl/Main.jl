@@ -19,6 +19,9 @@ using ResultPresenterModule
 # sample usage 
 # [PRNG_Arcsine_test]$ cat tmp_nolen.tmp | /home/peyo/progs/julia/bin/julia jl/Main.jl asin 4 tmp.txt w 1000 6
 
+
+# cat aes_tmp1000_len26.txt | /home/peyo/progs/julia/bin/julia jl/Main.jl asin 4 1000 26 
+
 function main()
     println("Entering main()")
     
