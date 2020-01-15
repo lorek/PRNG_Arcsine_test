@@ -8,12 +8,13 @@ Tools for empirical test for PRNGs based on the Arcsine Law, the method is descr
 Tool was written and tested in `The Julia Language v0.6.2` (also worked in `v0.6.4`).
 
 ## PRNGs
+### Non-cryptographic ones:
 Our implementation of PRNGs are in folder `prngs`. Main file: `prngs\prng.cpp`. Compiling:
 ````
 [user@machine PRNG_Arcsine_test/prngs]$ g++ -O2 -std=c++17 -o prng.o prng.cpp ./FlawedPath.cpp
 ````
 
-```Usage: ./prng.o [prng name] [number of strings | path to seeds] [log2 of length >= 6] [nrOfSeeds to skip] [-nolen] [-f frequency of flawed sequences] ```
+```Usage: ./prng.o [prng_name] [number of strings | path to seeds] [log2 of length >= 6] [nrOfSeeds to skip] [-nolen] [-f frequency of flawed sequences] ```
 where
 * `prng_name` is one of `Rand, Rand0, Rand1, Rand3, Minstd, Minstd0, Minstd1, NewMinstd, NewMinstd1, NewMinstd3, CMRG, CMRG0, CMRG1, SBorland, C_PRG, SVIS, Mersenne, RANDU, zepsuty, FlawedDyck, FlawedDyckMT`
 In the article we used only `Rand` (BSD lib rand()), `SVIS` (Microsoft Visual C++ rand()), `C_PRG` (GLIBC stdlib rand()), `NewMinstd3` (Minstd with multiplier 48271), `Mersenne` (Mersenne Twister mt19937_64) `FlawedDyckMT` (every Fth sequence (starting with 
@@ -24,6 +25,11 @@ Fth sequenc; where F is a user-defined parameter) is flawed, i.e. based on Dych 
 * `[-nolen]` by default, fist bits of output is the length of each sequence (needed for implemenations of our Arcsine tester). Can be useful if we want to produce only bits for another tester, e.g., for TestU01 of NIST Test Sutie.
 * `[-f frequency of flawed sequences]` this option is only valid for the PRNG `FlawedDyckMT`. `frequency of flawed sequences` is an integer F such that every Fth outputted sequence is flawed (based on Dych Paths); all remaining sequences are generated using  `Mersenne`. By default F=100.
 The first three parameters are mandatory.
+
+### Cryptographic ones:
+We used OpenSSL implementation, which is wrapped in PHP script `prngs\openssl_prng.php`.
+```Usage: php prngs\openssl_prng [prng name] [path to seeds] [log2 of length >= 6] ```
+where `[path to seeds] [log2 of length >= 6]` are the same as in non-cryptographic PRNGs, and `prng_name` is one of PRNGs available in OpenSSL, for a full list see file `prngs\openssl_rng.php`
 
 ## Testing PRNGs
 Program consists of several modules. From user's perspective, the starting point is `jl/Main.jl`. Program reads a bit stream from stdin. The results are written in stdout.  
@@ -50,7 +56,7 @@ Result:
   p-val;   String["0.0", "0.0", "0.0", "0.0", "0.0"]
 ````
 
-If we are to apply `asin` to some file not resulted from `prngs/prng.o`, we have to manually put number of sequences, and (log of) length of each sequence, e.g.,
+If we are to apply `asin` to some file not resulted from `prngs/prng.o` (resulted e.g., from `prngs\openssl_prngs.php`), we have to manually put number of sequences, and (log of) length of each sequence, e.g.,
 
 ````
 [user@machine PRNG_Arcsine_test]$  cat our_random_bits.dat | julia jl/Main.jl asin 4 10000 6 
