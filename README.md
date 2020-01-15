@@ -28,7 +28,11 @@ The first three parameters are mandatory.
 
 ### Cryptographic ones:
 We used OpenSSL implementation, which is wrapped in PHP script `prngs\openssl_prng.php`.
+
+
 ```Usage: php prngs\openssl_prng [prng name] [path to seeds] [log2 of length >= 6] ```
+
+
 where `[path to seeds] [log2 of length >= 6]` are the same as in non-cryptographic PRNGs, and `prng_name` is one of PRNGs available in OpenSSL, for a full list see file `prngs\openssl_rng.php`
 
 ## Testing PRNGs
