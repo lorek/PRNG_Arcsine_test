@@ -7,17 +7,19 @@
 #include <iterator>
 #include <numeric>
 #include <iostream>
+
+#include <cln/cln.h>
 #include "FlawedPath.hpp"
 
-typedef long long int64;
-typedef unsigned long long uint64;
+typedef long long long64;
+typedef unsigned long long ulong64;
 typedef int int32;
 typedef unsigned int uint32;
 
 using namespace std;
 
-uint64 pow2[64];   // pow2[i] = 2^i
-uint64 pow2m1[65]; // pow2m1[i] = 2^i - 1
+ulong64 pow2[64];   // pow2[i] = 2^i
+ulong64 pow2m1[65]; // pow2m1[i] = 2^i - 1
 
 void initPow()
 {
@@ -40,11 +42,38 @@ void printPow()
         printf("%llX\n", pow2m1[i]);
 }
 
+long64 myPow(long64 a, uint32 b)
+{
+    long64 res = 1;
+    for (uint32 i = 0; i < b; ++i)
+        res *= a;
+    return res;
+}
+
+/**
+ * calculates (base^exp) % mod using fast modular exponentiation
+ */
+ulong64 powerMod(ulong64 base, ulong64 exp, ulong64 mod)
+{
+	ulong64 res = 1;
+	base %= mod;
+	
+	while(exp)
+	{
+		if(exp & 1) 
+			res = (res * base) % mod;
+		
+		base = (base * base) % mod;
+		exp >>= 1; // exp = exp / 2;
+	}
+	return res;
+}
+
 class PRNG
 {
 public:
     virtual void setSeed(uint32 seed) = 0;
-    virtual uint64 nextInt() = 0;
+    virtual ulong64 nextInt() = 0;
     virtual uint32 getNrOfBits() = 0;
 };
 
@@ -62,7 +91,7 @@ public:
         prng->setSeed(seed);
     }
     
-    uint64 nextInt()
+    ulong64 nextInt()
     {
         return getByte(prng->nextInt());
     }
@@ -76,7 +105,7 @@ private:
     const shared_ptr<PRNG> prng;
     const uint32 byteNr;
     
-    uint64 getByte(uint64 n)
+    ulong64 getByte(ulong64 n)
     {
         n = n >> (byteNr * 8);
         return n & 255LLu;
@@ -106,7 +135,7 @@ public:
         prng->setSeed(seed);
     }
     
-    uint64 nextInt()
+    ulong64 nextInt()
     {
         return getBits(prng->nextInt());
     }
@@ -122,7 +151,7 @@ private:
     const uint32 leastSig;
     const uint32 nrOfBits;
     
-    uint64 getBits(uint64 n)
+    ulong64 getBits(ulong64 n)
     {
         n = n >> leastSig;
         return n & pow2m1[nrOfBits];
@@ -144,11 +173,11 @@ shared_ptr<PRNG> getShifted(shared_ptr<PRNG> prng, uint32 shift)
 class LCG : public PRNG
 {
 public:
-    const uint64 M;
-    const uint64 a, b;
+    const ulong64 M;
+    const ulong64 a, b;
     const uint32 nrOfBits;
     
-    LCG(uint64 M_, uint64 a_, uint64 b_, const uint32 nrOfBits_)
+    LCG(ulong64 M_, ulong64 a_, ulong64 b_, const uint32 nrOfBits_)
         : M(M_)
         , a(a_)
         , b(b_)
@@ -161,7 +190,7 @@ public:
         this->seed = seed;
     }
     
-    uint64 nextInt()
+    ulong64 nextInt()
     {
         seed = (a * seed + b) % M;
         return seed & pow2m1[nrOfBits];
@@ -173,7 +202,7 @@ public:
     }
     
 private:
-    uint64 seed = 1;
+    ulong64 seed = 1;
 };
 
 /***************************************************
@@ -200,16 +229,16 @@ public:
         n = 0;
     }
     
-    uint64 nextInt()
+    ulong64 nextInt()
     {
-        int64 nextx = xa *  x[(n+1)%3]  -  xb * x[n];
-        int64 nexty = ya *  y[(n+2)%3]  -  yb * y[n];
+        long64 nextx = xa *  x[(n+1)%3]  -  xb * x[n];
+        long64 nexty = ya *  y[(n+2)%3]  -  yb * y[n];
         nextx = mymod(nextx, xm);
         nexty = mymod(nexty, ym);
         x[n] = nextx;
         y[n] = nexty;
         n = (n + 1)%3;
-        return static_cast<uint64>( (zm + nextx - nexty) % zm );
+        return static_cast<ulong64>( (zm + nextx - nexty) % zm );
     }
     
     uint32 getNrOfBits()
@@ -218,14 +247,14 @@ public:
     }
     
 private:
-    int64 x[3], y[3];
-    const int64 xa = 63308;
-    const int64 xb = 183326;
-    const int64 xm = 2147483647LL;
-    const int64 ya = 86098;
-    const int64 yb = 539608;
-    const int64 ym = 2145483479LL;
-    const int64 zm = 2147483647LL;
+    long64 x[3], y[3];
+    const long64 xa = 63308;
+    const long64 xb = 183326;
+    const long64 xm = 2147483647LL;
+    const long64 ya = 86098;
+    const long64 yb = 539608;
+    const long64 ym = 2145483479LL;
+    const long64 zm = 2147483647LL;
     int n;
     
     void reset()
@@ -233,13 +262,13 @@ private:
         setSeed(1);
     }
     
-    int64 mymod(int64 a, int64 m)
+    long64 mymod(long64 a, long64 m)
     {
         if (m == 0)
             return a;
         if (m < 0)
             return mymod(-a, -m);
-        int64 res = a % m;
+        long64 res = a % m;
         if (res < 0)
             res += m;
         return res;
@@ -260,9 +289,9 @@ public:
         srand(seed);
     }
     
-    uint64 nextInt()
+    ulong64 nextInt()
     {
-        return static_cast<uint64>(rand());
+        return static_cast<ulong64>(rand());
     }
     
     uint32 getNrOfBits()
@@ -273,10 +302,10 @@ public:
 
 class BorlandPRNG : public PRNG
 {
-    uint64 nextInt()
+    ulong64 nextInt()
     {
         myseed = myseed * 0x015A4E35 + 1;
-        return static_cast<uint64>( (myseed >> 16) & 0x7FFF );
+        return static_cast<ulong64>( (myseed >> 16) & 0x7FFF );
     }
     
     void setSeed(uint32 seed)
@@ -306,10 +335,10 @@ class VisualPRNG : public PRNG
 	
 	// 0x343FDu  =   214 013
 	// 0x269EC3u = 2 531 011
-    uint64 nextInt()
+    ulong64 nextInt()
     {
         myseed = myseed * 0x343FDu + 0x269EC3u;
-        return static_cast<uint64>( (myseed >> 16) & 0x7FFF ); // 0x7FFF = 2^15 - 1 = 32 767 - 15 MSBs
+        return static_cast<ulong64>( (myseed >> 16) & 0x7FFF ); // 0x7FFF = 2^15 - 1 = 32 767 - 15 MSBs
     }
     
     void setSeed(uint32 seed)
@@ -344,12 +373,12 @@ public:
         eng.seed(seed);
     }
     
-    uint64 nextInt()
+    ulong64 nextInt()
     {
-//         //uint64 r = static_cast<uint64>(eng());
+//         //ulong64 r = static_cast<ulong64>(eng());
         //fprintf(stderr, "%llu\n", r & pow2m1[63]);
         //return r & pow2m1[63];
-        return static_cast<uint64>(eng());
+        return static_cast<ulong64>(eng());
     }
     
     uint32 getNrOfBits()
@@ -360,6 +389,115 @@ public:
     mt19937_64 eng;
 };
 
+/**********************************************************************************
+ *                                                                                *
+ *  BBS -  custom implementation of the Blum-Blum-Shub PRNG. This is a quadratic  *
+ *         congruential generator. Blum-Blum-Shub is an example of                *
+ *         a cryptographically secure PRNG.                                       *
+ *         This class extends the generic class PRNG for PRNGs. Each invokation   *
+ *         of this ghenerator produces an integer (of type unsigned long,         *
+ *         typically 64-bit) constructed from bits outputted in the consecutive   *
+ *         rounds of BBS.                                                         *
+ *                                                                                *
+ *         The internal implementation of this PRNG uses classes and methods      *
+ *         for computations with large numbers from the CLN library               *
+ *                                                                                *
+ **********************************************************************************/
+class BBS64_PRNG : public PRNG
+{
+public:
+	
+	BBS64_PRNG(const unsigned long p_, const unsigned long q_) :
+		p(p_),
+		q(q_)
+	{		
+		check_values();
+		// cerr << "p = " << p << endl;
+		// cerr << "q = " << q << endl;
+		// cerr << "n = " << n << endl;
+	}
+	
+	BBS64_PRNG(const char* p_, const char* q_) :
+		p(p_),
+		q(q_),
+		n(p * q)
+	{		
+		// cerr << "p = " << p << endl;
+		// cerr << "q = " << q << endl;
+		// cerr << "n = " << n << endl;
+		check_values();
+	}
+	
+	void setSeed(uint32 seed)
+    {
+		this->state = seed;	
+		
+		if(cln::mod(state, p) == 0 || cln::mod(state, q) == 0)
+			throw std::invalid_argument("BBS64_PRNG :: The seed should be co-prime with n = p*q.");
+    }
+	
+	void setSeed(const char* seed) 
+	{
+		this->state = seed;
+		
+		if(cln::mod(state, p) == 0 || cln::mod(state, q) == 0)
+			throw std::invalid_argument("BBS64_PRNG :: The seed should be co-prime with n = p*q.");
+    }
+	 
+    ulong64 nextInt()
+    {
+		cln::cl_I r = 0;
+		for(int i = 0; i < bw; ++i)
+		{
+			state = cln::mod(state * state, n);
+			r <<= 1;
+			r += (state & 1);
+		}
+		//cerr << "r = " << r << endl;
+		return cln::cl_I_to_ulong(r);
+		//return lr;
+    }
+	// prints a binary string consisting of bw bits generated by the generator
+	//   -> for testing and debugging purposes
+	string next_rnd_binary()
+	{
+		string s;
+		for(int i = 0; i < bw; ++i)
+		{
+			state = cln::mod(state * state, n);
+			s.push_back('0' + cln::cl_I_to_ulong(state & 1));
+		}
+		return s;
+	}
+	
+    uint32 getNrOfBits()
+    {
+        return bw;
+    }
+	
+private:
+	void check_values() 
+	{
+		if(!cln::isprobprime(p))
+			throw std::invalid_argument("BBS64_PRNG :: The paramater p must be a prime number.");
+		if((p & 3) != 3)
+			throw std::invalid_argument("BBS64_PRNG :: The paramater p should be congruent to 3 (mod 4).");
+		if(!cln::isprobprime(q))
+			throw std::invalid_argument("BBS64_PRNG :: The paramater q must be a prime number.");
+		if((q & 3) != 3)
+			throw std::invalid_argument("BBS64_PRNG :: The paramater q should be congruent to 3 (mod 4).");
+	}
+	
+	static const uint32 bw = 8*sizeof(unsigned long); // bit width
+	
+	const cln::cl_I p;
+	const cln::cl_I q;
+	const cln::cl_I n;
+	cln::cl_I state = 2;
+    
+};
+
+ 
 /**********************************************************************************
  *                                                                                *
  *  Flawed -  Hypothetical flawed PRNG - for 1 in every 100 seeds it returns the  *
@@ -376,13 +514,13 @@ public:
         eng.seed(seed);
     }
     
-    uint64 nextInt()
+    ulong64 nextInt()
     {
         if (seedNr % 100 == 0)
             //return 0x5555555555555555LLu;
             return 0x9999999999999999LLu;
         else
-            return static_cast<uint64>(eng());
+            return static_cast<ulong64>(eng());
     }
     
     uint32 getNrOfBits()
@@ -421,14 +559,14 @@ public:
         initializePath(seed);
     }
     
-    uint64 nextInt() {
+    ulong64 nextInt() {
         // generate new path if current path contains too few "fresh" bits
 		if(distance(it_path, eng.itPathEnd()) < getNrOfBits()) {
 			initializePath();
 		}
 		auto it = it_path;
 		it_path += getNrOfBits();
-		uint64 r = 0;
+		ulong64 r = 0;
 		while(it != it_path) {
 			r <<= 1;
 			if(*(it++)) ++r; // "safer" and "cleaner" than r = 2*r+(*it)
@@ -441,7 +579,7 @@ public:
     }
    
 private:
-	int64 path_n; // length of the Dyck Path is 4n
+	long64 path_n; // length of the Dyck Path is 4n
     
 	FlawedPath eng;
 	vector<bool>::iterator it_path;
@@ -486,12 +624,12 @@ public:
 		}
     }
     
-    uint64 nextInt() {
+    ulong64 nextInt() {
         if (seedNr % step == 0) {
             return nextIntFromPath();
 		}
         else {
-            return static_cast<uint64>(mt_eng());
+            return static_cast<ulong64>(mt_eng());
 		}
     }
     
@@ -502,7 +640,7 @@ public:
 private:
     int seedNr = 0;
 	uint32 step; 
-	int64 path_n; // length of the Dyck Path is 4n
+	long64 path_n; // length of the Dyck Path is 4n
     
 	FlawedPath path_eng;
 	mt19937_64 mt_eng;
@@ -519,14 +657,14 @@ private:
 		it_path = path_eng.itPathBegin();
 	}
 
-	uint64 nextIntFromPath() {
+	ulong64 nextIntFromPath() {
 		// generate new path if current path contains too few "fresh" bits
 		if(distance(it_path, path_eng.itPathEnd()) < getNrOfBits()) {
 			initializePath();
 		}
 		auto it = it_path;
 		it_path += getNrOfBits();
-		uint64 r = 0;
+		ulong64 r = 0;
 		while(it != it_path) {
 			r <<= 1;
 			if(*(it++)) ++r; // "safer" and "cleaner" than r = 2*r+(*it)
@@ -544,7 +682,7 @@ public:
         s = seed + (seed % 2 == 0 ? 1 : 0);
     }
     
-    uint64 nextInt()
+    ulong64 nextInt()
     {
         s = (65539llu * s) % pow2[31];
         return s;
@@ -555,7 +693,7 @@ public:
         return 31;
     }
     
-    uint64 s;
+    ulong64 s;
 };
 
 class GeneratorInvoker
@@ -568,7 +706,7 @@ public:
     {
     }
     
-    GeneratorInvoker(shared_ptr<PRNG>& prng_, int64 nrOfSeedsToSkip_)
+    GeneratorInvoker(shared_ptr<PRNG>& prng_, long64 nrOfSeedsToSkip_)
         : prng(prng_)
         , nrOfSeedsToSkip(nrOfSeedsToSkip_)
     {
@@ -604,20 +742,20 @@ public:
         }
     }
     
-    void run(int64 nrOfStrings, int64 length, bool write_data_len)
+    void run(long64 nrOfStrings, long64 length, bool write_data_len)
     {
 		fprintf(stderr, "GeneratorInvoker::run(%lld, %lld)\n", nrOfStrings, length);
         freopen (NULL, "wb", stdout);
         
         nrOfStrings -= nrOfSeedsToSkip;
 		if(write_data_len) {
-			fwrite(&nrOfStrings, sizeof(int64), 1, stdout);
-			fwrite(&length, sizeof(int64), 1, stdout);
+			fwrite(&nrOfStrings, sizeof(long64), 1, stdout);
+			fwrite(&length, sizeof(long64), 1, stdout);
 		}
         
         skipSeeds();
         
-        for (int64 i = 1; i <= nrOfStrings; ++i)
+        for (long64 i = 1; i <= nrOfStrings; ++i)
         {
             prng->setSeed(nextSeed());
             
@@ -634,7 +772,7 @@ public:
             nextSeed();
     }
     
-    void run(int64 length, bool write_data_len)
+    void run(long64 length, bool write_data_len)
     {
         int nrOfStrings = getNextIntFromFile();
         run(nrOfStrings, length, write_data_len);
@@ -643,26 +781,26 @@ public:
 private:
     shared_ptr<PRNG> prng;
     FILE* seeds = 0;
-    int64 nrOfSeedsToSkip = 0;
-    uint64 curr;
+    long64 nrOfSeedsToSkip = 0;
+    ulong64 curr;
     int filled;
     
-    void generateString(uint64 nrOfBits)
+    void generateString(ulong64 nrOfBits)
     {
-        uint64 nrOfChunks = nrOfBits / 64;
+        ulong64 nrOfChunks = nrOfBits / 64;
         curr = 0;
         filled = 0;
-        for (uint64 i = 0; i < nrOfChunks; ++i)
+        for (ulong64 i = 0; i < nrOfChunks; ++i)
         {
-            uint64 chunk = nextChunk();
+            ulong64 chunk = nextChunk();
             //fprintf(stderr, "filled = %d\n", filled);
-            fwrite(&chunk, sizeof(uint64), 1, stdout);
+            fwrite(&chunk, sizeof(ulong64), 1, stdout);
         }
     }
     
-    uint64 nextChunk()
+    ulong64 nextChunk()
     {
-        uint64 r = 0;
+        ulong64 r = 0;
         int nrOfBits = prng->getNrOfBits();
         while (filled < 64)
         {
@@ -671,7 +809,7 @@ private:
             filled += nrOfBits;
         }
         int used = nrOfBits + 64 - filled;
-        uint64 res = curr;
+        ulong64 res = curr;
         curr = used < 64 ? (r >> used) : 0;
         filled = nrOfBits - used;
         return res;
@@ -701,10 +839,10 @@ void wrongArgs(int argc, char** argv)
         exit(1);
 }
 
-shared_ptr<PRNG> getPRNG(char* name, uint32 log_len = 26, int64 step_flawed = 100)
+shared_ptr<PRNG> getPRNG(char* name, uint32 log_len = 26, long64 step_flawed = 100)
 {	
-    // TODO refactor
-	// - remove if-cascade
+    // TODO refactor 
+	// - remove if-cascade (e.g. PRNGs names in a map with codes (enum) + decode() + switch..case)
 	// - replace char* with std::string and strcmp(s1, s2) with s1.compare(s2)
     if (strcmp(name, "z_czapy") == 0)
     {
@@ -826,15 +964,29 @@ shared_ptr<PRNG> getPRNG(char* name, uint32 log_len = 26, int64 step_flawed = 10
 	{
 		return shared_ptr<PRNG>(new FlawedDyckMT(log_len, step_flawed));
 	}
+	else if(strncmp(name, "BBS", 3) == 0) // name == BBS or name == BBS_p_q
+	{
+		char* p = NULL;
+		char* q = NULL;
+		if(strlen(name) == 3)
+		{ // Default parameters - two 64-bit prime numbers
+			p = (char*) "11234773052181932039";
+			q = (char*) "15755662711309472467";
+		}
+		else
+		{ 
+			p = strtok(name + 3, "_");
+			if(p != NULL)
+			{
+				q = strtok(NULL, "_");
+			}
+		}
+		if(p != NULL && q != NULL)
+		{
+			return shared_ptr<PRNG>(new BBS64_PRNG(p, q));
+		}
+	}
     return shared_ptr<PRNG>();
-}
-
-int64 myPow(int64 a, uint32 b)
-{
-    int64 res = 1;
-    for (uint32 i = 0; i < b; ++i)
-        res *= a;
-    return res;
 }
 
 int main(int argc, char** argv)
@@ -842,18 +994,19 @@ int main(int argc, char** argv)
     initPow();
     //printPow();
     
+	// TODO: Refactor this! (e.g. store params in a map of param names (keys - e.g. enum) and values)
     if (argc < 4)
         wrongArgs(argc, argv);
     
     uint32 logLength = atoi(argv[3]);
-    int64 nrOfStrings = atoi(argv[2]);
+    long64 nrOfStrings = atoi(argv[2]);
     if (logLength < 6) {
         wrongArgs(argc, argv); // calls exit()
 	}
     
-	int64 length = myPow(2LL, logLength);
-    int64 skip = 0;
-	int64 step_flawed = 100;
+	long64 length = myPow(2LL, logLength);
+    long64 skip = 0;
+	long64 step_flawed = 100;
 	bool write_data_len = true;
     if (argc == 5) {
 		if(strcmp(argv[4], "-nolen") == 0) {
@@ -895,6 +1048,7 @@ int main(int argc, char** argv)
 				step_flawed = atoi(argv[7]);
 		}
 	}
+	
 	shared_ptr<PRNG> prng = getPRNG(argv[1], logLength, step_flawed);
     if (!prng)
     {
@@ -922,5 +1076,8 @@ int main(int argc, char** argv)
 	// for(int i = 0; i < 8; ++i) {
 		// fd->nextInt();
 	// }
-    // return 0;
+	// shared_ptr<BBS64_PRNG> bbs = shared_ptr<BBS64_PRNG>(new BBS64_PRNG("30000000091", "40000000003"));
+	// bbs->setSeed(4103749533);
+	// cout << bbs->next_rnd_binary() << bbs->next_rnd_binary() << endl;
+    return 0;
 }
