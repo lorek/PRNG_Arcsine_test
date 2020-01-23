@@ -8,25 +8,34 @@ Tools for empirical test for PRNGs based on the Arcsine Law, the method is descr
 Tool was written and tested in `The Julia Language v0.6.2` (also worked in `v0.6.4`).
 
 ## PRNGs
-### Non-cryptographic ones:
-Our implementation of PRNGs are in folder `prngs`. Main file: `prngs\prng.cpp`. Compiling:
+### All non-cryptographic PRNGs and the Blum Blum Shub generator:
+Our implementation of PRNGs are in folder `prngs`. Main file: `prngs\prng.cpp`. The implementation of some of the tested PRNGs (the Blum Blum Shub generator) uses the CLN library for computations
+with arbitrary large number. Thus, to compile the source code in C++, the CLN package needs to be installed on the system. For more details see the [CLN website](https://www.ginac.de/CLN/).
+
+ Compiling:
 ````
-[user@machine PRNG_Arcsine_test/prngs]$ g++ -O2 -std=c++17 -o prng.o prng.cpp ./FlawedPath.cpp
+[user@machine PRNG_Arcsine_test/prngs]$ g++ -O2 -std=c++17 -o prng.o prng.cpp ./FlawedPath.cpp -l cln
 ````
 
 ```Usage: ./prng.o [prng_name] [number of strings | path to seeds] [log2 of length >= 6] [nrOfSeeds to skip] [-nolen] [-f frequency of flawed sequences] ```
 where
-* `prng_name` is one of `Rand, Rand0, Rand1, Rand3, Minstd, Minstd0, Minstd1, NewMinstd, NewMinstd1, NewMinstd3, CMRG, CMRG0, CMRG1, SBorland, C_PRG, SVIS, Mersenne, RANDU, zepsuty, FlawedDyck, FlawedDyckMT`
-In the article we used only `Rand` (BSD lib rand()), `SVIS` (Microsoft Visual C++ rand()), `C_PRG` (GLIBC stdlib rand()), `NewMinstd3` (Minstd with multiplier 48271), `Mersenne` (Mersenne Twister mt19937_64) `FlawedDyckMT` (every Fth sequence (starting with 
-Fth sequenc; where F is a user-defined parameter) is flawed, i.e. based on Dych Paths, so that it is exactly half of the time above x-axis, and half of the time above; otherwise it is an ouput of `Mersenne`)
+* `prng_name` is one of `Rand, Rand0, Rand1, Rand3, Minstd, Minstd0, Minstd1, NewMinstd, NewMinstd1, NewMinstd3, CMRG, CMRG0, CMRG1, SBorland, C_PRG, SVIS, Mersenne, RANDU, zepsuty, FlawedDyck, FlawedDyckMT, BBS, BBS_p_q`,
+where `p` and `q` in `BBS_p_q` are the parameters of the Blum Blum Shub generator (if `p` and `q` are not prime numbers, an exception is thrown and the program terminates).
+In the article we used only `Rand` (BSD lib rand()), `SVIS` (Microsoft Visual C++ rand()), `C_PRG` (GLIBC stdlib rand()), `NewMinstd3` (Minstd with multiplier 48271), `Mersenne` (Mersenne Twister mt19937_64)
+`FlawedDyckMT` and `BBS`
+  * For `FlawedDyckMT` every Fth sequence (starting with Fth sequenc; where F is a user-defined parameter) is flawed, i.e. based on Dych Paths, so that it is exactly half of the time above x-axis,
+    and half of the time above; otherwise it is an ouput of `Mersenne`).
+  * `BBS` is the Blum Blum Shub generator with default values for parameters `p` and `q`, i.e. `p = 11234773052181932039` and `q = 15755662711309472467` (both `p` and `q` are between 2^63 and 2^64-1).
+    It takes the form `x_(i+1) = x_(i)^{2} mod p*q`, where `p` and `q` are two prime numbers congruent to 3 (mod 4) and the seed `x_(0)` should be coprime with `p*q`.   
 * `[number of strings | path to seeds]`:  `number of strings` number of sequences to produce; or `path to seed`, a path to file with seeds (it will produce as many sequences as seeds in this file)
 * `[log2 of length >= 6]` log2 of the length of each sequence
 * `[nrOfSeeds to skip]` number of seeds to skip while reading the seeds from a file with specified path (the PRNG will be invoked only for the remaining seeds)
-* `[-nolen]` by default, fist bits of output is the length of each sequence (needed for implemenations of our Arcsine tester). Can be useful if we want to produce only bits for another tester, e.g., for TestU01 of NIST Test Sutie.
+* `[-nolen]` by default, te first 128 bits of the output is the number of generated sequences and the length of each sequence (required by the implemenation of our Arcsine test). With the option -nolen, 
+  these additional bits are omitted and the output contains only pseudorandom bits produced by the PRNG. This can be useful if we want to produce only bits for another tester, e.g., for TestU01 of NIST Test Sutie.
 * `[-f frequency of flawed sequences]` this option is only valid for the PRNG `FlawedDyckMT`. `frequency of flawed sequences` is an integer F such that every Fth outputted sequence is flawed (based on Dych Paths); all remaining sequences are generated using  `Mersenne`. By default F=100.
 The first three parameters are mandatory.
 
-### Cryptographic ones:
+### Cryptographic generators (except the Blum Blum Shub):
 We used OpenSSL implementation, which is wrapped in PHP script `prngs\openssl_prng.php`.
 
 
